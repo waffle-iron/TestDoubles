@@ -1,3 +1,5 @@
 # TestDoubles
 =============
-[![Gitter](https://img.shields.io/badge/GITTER-JOIN_CHAT_%E2%86%92-1dce73.svg)]
+
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/DevTestSolutions/TestDoubles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
