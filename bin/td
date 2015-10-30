@@ -1,0 +1,161 @@
+#!/bin/bash
+
+#Main script for test double service virtualization to execute it's services
+TD_HOST="http://localhost:5050"
+td_help()
+{
+echo "TestDoubles server listening at ${TD_HOST} 
+Usage: td [help] [create] [set-record-mode] [set-playback-mode] [delete] [describe] [recreate]
+            
+For reference and documentation see: ${TD_HOST}
+" 
+}
+
+if [ $# -eq 0 ]; then
+    td_help
+    exit 1
+fi
+
+while [[ $# > 0 ]]
+do
+key="$1"
+
+case $key in
+    help)
+    help="y" 
+    ;;
+    create)
+    create="y"
+    ;;
+    recreate)
+    recreate="y"
+    ;;
+    set-record-mode)
+    record="y"
+    ;;
+    set-playback-mode)
+    playback="y"
+    ;;
+    describe)
+    show_td="y"
+    ;;
+    delete)
+    delete="y"
+    ;;
+# parameters passed to functions
+    --td-name)
+    td_name="$2"
+    shift # past argument
+    ;;
+    --file)
+    file="$2"
+    shift # past argument
+    ;;
+    --td-servicehost)
+    td_servicehost="$2"
+    shift # past argument
+    ;;
+    --protocol)
+    protocol="$2"
+    shift # past argument
+    ;;
+    --default)
+    DEFAULT=YES
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+shift # past argument or value
+done
+
+#Functions 
+
+td_create()
+{   
+    api_url="$TD_HOST/testdoubles"  
+    header="Content-Type: application/json"
+    if [ "$td_name" = "" ]
+    then
+        curl -s -X POST -H ${header} --data "@${file}" ${api_url}
+    else
+        curl -s -X POST -H ${header} -d '{"name": "'"${td_name}"'"}' ${api_url}
+    fi
+    echo >&2
+}
+
+td_recreate()
+{   
+    api_url="$TD_HOST/testdoubles"  
+    header="Content-Type: application/json"
+    curl -s -X PUT -H ${header} --data "@${file}" ${api_url}
+    echo >&2
+}
+
+td_set_record()
+{   
+    api_url="$TD_HOST/testdoubles/${td_name}/proxy"
+    header="Content-Type: application/json"
+    curl -s -X POST -H ${header} -d '{"name": "'"${td_name}"'", "serviceHost": "'"${td_servicehost}"'"}' ${api_url}
+    echo >&2
+}
+
+td_set_playback()
+{   
+    api_url="$TD_HOST/testdoubles/${td_name}/proxy"
+    #header="Content-Type: application/json"
+    curl -s -X DELETE -d '{"name": "'"${td_name}"'"}' ${api_url}
+    echo >&2
+}
+
+show_td()
+{
+    if [ "$td_name" = "" ]
+    then
+        api_url="$TD_HOST/testdoubles"
+        curl -s -X GET ${api_url}
+    else
+        api_url="$TD_HOST/testdoubles/${td_name}"
+        header="Content-Type: application/json"
+        curl -s -X GET -H $header -d '{"name": "'"${td_name}"'"}' ${api_url}
+    fi
+    echo >&2
+}
+
+
+td_delete()
+{   
+    if [ "$td_name" !=  "" ]
+    then
+        api_url="$TD_HOST/testdoubles/${td_name}"  
+        header="Content-Type: application/json"
+        curl -s -X DELETE -H $header -d '{"name": "'"${td_name}"'"}' ${api_url}
+    else
+        api_url="$TD_HOST/testdoubles"
+        curl -s -X DELETE ${api_url}
+    fi
+    echo >&2
+}
+
+if [ "$help" = "y" ]
+then
+       td_help
+elif [ "$create" = "y" ]
+then
+    td_create
+elif [ "$recreate" = "y" ]
+then
+    td_recreate
+elif [ "$record" = "y" ]
+then
+    td_set_record
+elif [ "$playback" = "y" ]
+then
+    td_set_playback
+elif [ "$show_td" = "y" ] 
+then
+    show_td
+elif [ "$delete" = "y" ] 
+then
+    td_delete   
+fi  

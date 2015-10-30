@@ -1,0 +1,141 @@
+#!/usr/bin/env node
+
+var Hapi = require('hapi');
+var exec = require('child_process').exec;
+var fs = require('fs');
+
+var routes = require('../src/routes.js');
+var packageFile = require('../package.json');
+var utils = require('../src/utils.js');
+
+var server = new Hapi.Server();
+var singleMode = false;
+
+/**
+ * Creates a Hapi server to process incoming requests, and writes the pid to the td.pid file.
+ * @return {Object} The Hapi server.
+ */
+function boot()
+{
+	server.connection({port: process.env.TD_PORT || 5050});
+
+	//add routes
+	for (var i = 0 ; i < routes.length; i++) {
+		server.route(routes[i]);
+	}
+	server.start(function () {
+	    console.log('TestDoubles' + ' v' + packageFile.version + ' ready to roll at ' + server.info.uri + ' with logs at ' + __dirname + '/../logs/td.log');
+	});
+
+    fs.writeFileSync(__dirname + '/../td.pid', process.pid.toString());
+}
+
+/**
+ * If the application is started regularly with the "start" command, then only the pid file is removed.
+ * If the application is started with the "start-server" command, the process is killed. 
+ */
+function halt()
+{
+	if(!singleMode)
+	{
+		try
+		{
+			fs.statSync(__dirname + '/../td.pid');
+			var pid = fs.readFileSync(__dirname + '/../td.pid');
+
+		   	exec("kill " + pid, function (error, stdout, stderr) {
+
+		        if (error) 
+		        {
+		            utils.logger.error(stderr);
+		        }
+
+		        console.log("TestDoubles has successfully shutdown");
+		    });
+		}
+
+		catch(error)
+		{
+			console.log("TestDoubles server is not running ");
+			process.exit(1);
+		}
+	}
+
+	if(utils.checkFileExists(__dirname + '/../td.pid'))
+	{
+		fs.unlinkSync(__dirname + '/../td.pid');
+	}
+
+	process.exit(0);
+}
+
+/**
+ * Exits the process.
+ */
+function terminate()
+{
+	if(utils.checkFileExists(__dirname + '/../td.pid'))
+	{
+		fs.unlinkSync(__dirname + '/../td.pid');
+	}
+
+	 console.log("TestDoubles has successfully shutdown");
+	 process.exit(0);
+}
+
+/**
+ * Displays documentation to the command line for the user to view.
+ */
+function help()
+{
+ 	console.log();
+	console.log();
+ 	console.log('Usage: tdctl [command] [options]');
+    console.log('Commands: start, stop, help (defaults to start)');
+    console.log('Options:');
+    console.log('    --version         displays the TestDoubles version and exits');
+    console.log();
+    console.log('Description of commands ');
+    console.log('    [start] Starts the TestDoubles server. If the command is omitted, server will be started automatically.');
+    console.log('    [stop]  Stops the TestDoubles server.');
+    console.log('    [help]  Displays the documentation for TestDoubles.');
+    console.log();
+}
+
+switch(process.argv[2]) 
+{
+	case 'start':
+	case undefined:
+		require('../node_modules/mountebank/bin/mb');
+		boot();
+		singleMode = true;
+		break;
+
+	case 'start-server':
+		boot();
+		break;	
+
+	case 'stop':
+		halt();
+		break;
+
+	case 'help':
+		help();
+		break;
+
+	case '--version':
+		console.log('TestDoubles ' + packageFile.version);
+		break;
+
+	default:
+		help();
+		break;
+}
+
+if(!singleMode)
+{
+	process.on('SIGTERM', terminate);
+	process.on('SIGINT', terminate);
+}
+
+module.exports = server;

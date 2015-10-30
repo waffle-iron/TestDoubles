@@ -1,0 +1,9 @@
+site_name: TestDoubles
+docs_dir: ./documentation
+site_dir: ./site
+pages:
+- Home: index.md
+- CLI: CLI.md
+- API: API.md
+- Implementation: implementation_details.md
+theme: mkdocs

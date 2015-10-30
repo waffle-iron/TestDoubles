@@ -1,0 +1,49 @@
+{
+  "name": "TestDoubles",
+  "version": "0.9.8",
+  "description": "TestDoubles - Light Weight Service Virtualization for iPaaS and Microservices",
+  "main": "./bin/tdctl",
+  "scripts": {
+    "lint": "./node_modules/jshint/bin/jshint src/*",
+    "scalability-test": "npm run start && sleep 5 && ./node_modules/mocha/bin/mocha test/Scalability.js && ./bin/tdctl stop",
+    "start": "./bin/tdctl &",
+    "pretest": "npm run start && sleep 5",
+    "test": "./node_modules/mocha/bin/mocha test/*",
+    "posttest": "./bin/tdctl stop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevTestSolutions/TestDoubles"
+  },
+  "keywords": [
+    "test",
+    "double",
+    "service",
+    "virtualization"
+  ],
+  "author": "CA Technologies",
+  "contributors": [
+    {
+      "name": "Dhruv Mevada"
+    },
+    {
+      "name": "Stephy Nancy"
+    },
+    {
+      "name": "Rajesh Raheja"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/DevTestSolutions/TestDoubles",
+  "dependencies": {
+    "chai": "^3.2.0",
+    "hapi": "^8.6.1",
+    "log4js": "^0.6.26",
+    "mocha": "^2.3.2",
+    "mountebank": "^1.2.122",
+    "request": "^2.61.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.8.0"
+  }
+}
