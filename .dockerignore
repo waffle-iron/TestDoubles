@@ -1,0 +1,13 @@
+# These files are to be ignored by docker
+*.log
+*.pid
+logs/*
+testdoubles/*
+.vagrant
+.git
+.gitignore
+.dockerignore
+.travis.yml
+Dockerfile
+Vagrantfile
+demo

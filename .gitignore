@@ -1,0 +1,12 @@
+# These files are to be ignored by git
+lib/*
+logs/*.log
+node_modules/*
+testdoubles/*.json
+**/.vagrant/*
+*.log
+*.pid
+*.html
+documentation/*.html
+coverage
+

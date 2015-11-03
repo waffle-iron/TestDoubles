@@ -1,0 +1,36 @@
+# TestDoubles
+# Maintainer: Rajesh Raheja
+
+# language setting
+language: node_js
+
+# version numbers to test against
+node_js:
+    - 0.10.25
+#    - 0.11.10
+
+# only build for the master Git branch
+branches:
+  only:
+    - master
+    - develop	
+
+# Keep all installation steps in Dockerfile and avoid here
+before_install:
+    - make setup
+
+install:
+#    - npm install
+# after_install:
+
+before_script:
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+
+script:
+    - make npm-test
+    - make npm-release
+#Shippable executes npm test automatically, output should be in jUnit (test) and Cobertura (coverage) formats
+# after_success:
+# after_failure:
+# after_script:
