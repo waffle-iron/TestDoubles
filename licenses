@@ -1,0 +1,9 @@
+TestDoubles utilizes the following software. 
+
+chai: MIT https://github.com/chaijs/chai
+Hapi: Yahoo, Walmart, Eran Hammer, and contributors https://github.com/hapijs/hapi/blob/master/LICENSE
+Log4js: Apache https://github.com/nomiddlename/log4js-node/blob/master/LICENSE
+Mocha: MIT https://github.com/mochajs/mocha/blob/master/LICENSE
+Mountebank: MIT https://github.com/bbyars/mountebank/blob/master/LICENSE
+Request: Apache https://github.com/request/request/blob/master/LICENSE
+JSHint: Anton Kovalyov https://github.com/jshint/jshint/blob/master/LICENSE
