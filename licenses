@@ -1,4 +1,4 @@
-TestDoubles utilizes the following software. 
+TestDoubles utilizes the following software, subject to the following licenses:
 
 chai: MIT https://github.com/chaijs/chai
 Hapi: Yahoo, Walmart, Eran Hammer, and contributors https://github.com/hapijs/hapi/blob/master/LICENSE
