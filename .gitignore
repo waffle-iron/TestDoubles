@@ -9,4 +9,4 @@ testdoubles/*.json
 *.html
 documentation/*.html
 coverage
-
+site/*
