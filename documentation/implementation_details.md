@@ -30,7 +30,7 @@ The logger.js and the utils.js file are also vital for the execution of the appl
 
 The utils file contains all the functions that are commonly used by most controllers. This includes file checking, writing to files, deleting files, and retrieving the testdouble object.
 
-## Testdoubles
+## Testdoubles (AKA TD)
 
 Each testdouble has a testDoubleName.json file, where testDoubleName is the name of the testdouble. This file houses
 the definition of the testdouble. All testdouble definitions are stored in the testdoubles/ directory.
@@ -118,7 +118,7 @@ The TestDoubles software is evaluated for each of the 12 factors below.
     
 # Scalability 
 
-There are two options for scalability. The first is to embed MB inside of TD, and the second is to separate MB from TD.
+There are two options for scalability. The first is to embed Montebank (AKA MB) inside of TD, and the second is to separate MB from TD.
 Irrespective of the option, there is always a TD registry file that maintains a lookup of the testdoubles that exist on each node. The registry file is maintained by Consul. Each instance of TD runs inside a docker container. A node can have many docker containers, and each node must also have a docker container for Registrator. Registrator is a third party service that automatically registers and deregisters a service with Consul. Consul should be on its own node, and not in a docker container. 
 
 There are two main problems for scalability: service discovery and service registration. 
