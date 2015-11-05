@@ -15,7 +15,7 @@ describe('PUT /imposters', function() {
 		request({
 				url: 'http://localhost:'+ tdPort + '/testDoubles',
 				method: 'DELETE'
-			}, function(error, response, body) {
+			}, function() {
 				done();
 		});
 	});

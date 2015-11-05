@@ -19,13 +19,13 @@ describe('DELETE /testdoubles/{testDoubleName}', function() {
 			json: {	
 				name: testDoubleName
 			}
-		}, function(error, response, body) {
+		}, function() {
 
 			request({
 				url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName,
 				method: 'DELETE',
 				json: {}
-			}, function(error, response, body) {
+			}, function() {
 
 				assert.equal(utils.getTestDoubleDefinition(testDoubleName), undefined, 'testdouble should be undefined');
 
@@ -53,7 +53,7 @@ describe('DELETE /testdoubles/{testDoubleName}', function() {
 			json: {	
 				name: testDoubleName
 			}
-		}, function(error, response, body) {
+		}, function() {
 
 			request({
 				url: 'http://localhost:' + tdPort + '/testdoubles/' + 'abcxyz',
@@ -76,13 +76,13 @@ describe('DELETE /testdoubles/{testDoubleName}', function() {
 			json: {	
 				name: testDoubleName
 			}
-		}, function(error, response, body) {
+		}, function() {
 
 			request({
 				url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName,
 				method: 'DELETE',
 				json: {}
-			}, function(error, response, body) {
+			}, function() {
 				
 				request({
 					url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName,

@@ -17,7 +17,7 @@ describe("POST /testdoubles", function() {
 		request({
 				url: 'http://localhost:'+ tdPort + '/testdoubles/' + testDoubleName,
 				method: 'DELETE'
-			}, function(error, response, body) {
+			}, function() {
 				done();
 		});
 	});
@@ -98,7 +98,7 @@ describe("POST /testdoubles", function() {
 				"href": "http://localhost:" + 2525 + "/imposters/5052"
 				}
 			}
-		}
+		};
 
 		fs.writeFileSync(__dirname + '/../' + testDoubleName + '.json', JSON.stringify(object, null, 4));
 		var testDouble = JSON.parse(fs.readFileSync(__dirname + '/../' + testDoubleName + '.json', 'utf8').toString());
@@ -117,7 +117,7 @@ describe("POST /testdoubles", function() {
 			request({
 				url: 'http://localhost:'+ tdPort + '/testdoubles/' + testDoubleName,
 				method: 'DELETE'
-			}, function(error, response, body) {
+			}, function() {
 
 				request({
 					url: 'http://localhost:' + tdPort + '/testdoubles',
@@ -227,7 +227,6 @@ describe("POST /testdoubles", function() {
 		}, function(error, response, body) {
 
 			mbtestDoublePort = body.port;
-			var port = body.port;
 			fs.unlinkSync(__dirname + '/../testdoubles/' + testDoubleName + '.json');
 
 			request({
@@ -236,7 +235,7 @@ describe("POST /testdoubles", function() {
 				json: {
 					"name": testDoubleName
 				}
-			}, function(error, response, body) {
+			}, function() {
 
 				var exists = utils.checkFileExists(__dirname + '/../testdoubles/' + testDoubleName + '.json');
 				assert.equal(exists, true, 'file must be recreated locally if testdouble exists');

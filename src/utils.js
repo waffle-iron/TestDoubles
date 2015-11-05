@@ -45,24 +45,14 @@ function getTestDoubleDefinition(testDoubleName)
 }
 
 /**
- * Retrieves the definition of all testdoubles.
- * @return {Object} testdoubles A single object consisting of all testdoubles.
+ * Reads all the files inside a particular directory.
+ * @param {String} folder The directory to read files from.
+ * @return {Object} files An array of all files residing in the directory.
  */
-function getAllTestDoubles()
+function getFiles(folder)
 {
-	logger.debug('  entering getAllTestDoubles() with no parameters');
-
-	var testDoublesList = cleanFiles();
-	var testDoubles = {};
-	testDoubles.imposters = [];
-
-	for (var index = 0; index < testDoublesList.length; index++) 
-	{
-		testDoubles.imposters.push(getTestDoubleDefinition(testDoublesList[index]));
-	}
-
-	logger.debug('  exiting getAllTestDoubles() with list: ' + JSON.stringify(testDoubles, null, 4));
-	return testDoubles;
+	var files = fs.readdirSync(folder);
+	return files;
 }
 
 /**
@@ -89,14 +79,24 @@ function cleanFiles()
 }
 
 /**
- * Reads all the files inside a particular directory.
- * @param {String} folder The directory to read files from.
- * @return {Object} files An array of all files residing in the directory.
+ * Retrieves the definition of all testdoubles.
+ * @return {Object} testdoubles A single object consisting of all testdoubles.
  */
-function getFiles(folder)
+function getAllTestDoubles()
 {
-	var files = fs.readdirSync(folder);
-	return files;
+	logger.debug('  entering getAllTestDoubles() with no parameters');
+
+	var testDoublesList = cleanFiles();
+	var testDoubles = {};
+	testDoubles.imposters = [];
+
+	for (var index = 0; index < testDoublesList.length; index++) 
+	{
+		testDoubles.imposters.push(getTestDoubleDefinition(testDoublesList[index]));
+	}
+
+	logger.debug('  exiting getAllTestDoubles() with list: ' + JSON.stringify(testDoubles, null, 4));
+	return testDoubles;
 }
 
 /**

@@ -16,7 +16,7 @@ describe('POST /testdoubles/{testDoubleName}/proxy', function() {
 		request({
 				url: 'http://localhost:'+ tdPort + '/testdoubles/' + testDoubleName,
 				method: 'DELETE'
-			}, function(error, response, body) {
+			}, function() {
 				done();
 		});
 	});
@@ -30,7 +30,7 @@ describe('POST /testdoubles/{testDoubleName}/proxy', function() {
 			json: {	
 				name: testDoubleName
 			}
-		}, function(error, response, body) {
+		}, function() {
 
 			request({
 				url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName + '/proxy',
@@ -61,7 +61,7 @@ describe('POST /testdoubles/{testDoubleName}/proxy', function() {
 			json: {	
 				name: testDoubleName
 			}
-		}, function(error, response, body) {
+		}, function() {
 
 			request({
 				url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName + '/proxy',

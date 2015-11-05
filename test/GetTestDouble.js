@@ -13,7 +13,7 @@ describe('GET /testdoubles/{testDoubleName}', function() {
 		request({
 				url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName,
 				method: 'DELETE'
-			}, function(error, response, body) {
+			}, function() {
 				done();
 		});
 	});

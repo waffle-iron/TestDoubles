@@ -15,7 +15,7 @@ describe('GET /testdoubles', function() {
 		request({
 				url: 'http://localhost:'+ tdPort + '/testdoubles',
 				method: 'DELETE'
-			}, function(error, response, body) {
+			}, function() {
 				ports = [];
 				done();
 		});

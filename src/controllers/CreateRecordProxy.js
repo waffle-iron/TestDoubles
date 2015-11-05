@@ -129,7 +129,6 @@ function createProxyHandler(request, reply)
 {
 	utils.logger.debug('Entering create proxy handler, Begin request POST /testdoubles/{testDoubleName}/proxy');
 	utils.logger.debug('  [' + request.params.testDoubleName +']' + '  entering getTestDoubleDefinition()');
-	utils.logger.debug('  testdouble definition after validateTestDoubleDefinition(): ' + JSON.stringify(testDouble, null, 4));
 
 	var serviceHost  = request.payload.serviceHost;
 

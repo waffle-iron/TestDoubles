@@ -4,6 +4,22 @@ var mbPort = process.env.MB_PORT || 2525;
 var mbHost = process.env.MB_HOST || 'localhost';
 
 /**
+ * Retrieves a static object for HTTP DELETE request options. 
+ * @param  {Object} testDoubleDefinition The testdouble definition that contains the port for the delete options.
+ * @return {Object} The DELETE options for the HTTP request.
+ */
+function populateDeleteOptions(testDoubleDefinition)
+{
+	return {
+		hostname: mbHost,
+		port: mbPort,
+		path: '/imposters/' + testDoubleDefinition.port,
+		method: 'DELETE',
+		headers: {}
+	};
+}
+
+/**
  * GETs a testdouble, but without proxies and requests array.
  * @param {Object} testDoubleDefinition The definition of the testdouble
  * @param {Object} reply The Hapi object consisting of a JSON response to be sent to the client.
@@ -575,22 +591,6 @@ function getTestDouble(testDoubleDefinition, reply)
 		utils.logger.error('could not get testdouble because of problems in get testdouble request:  ' + error.message);
 		utils.sendFailureReply(reply, "bad request", "could not get testdouble because of problems in get testdouble request: " + error.message);
 	});
-}
-
-/**
- * Retrieves a static object for HTTP DELETE request options. 
- * @param  {Object} testDoubleDefinition The testdouble definition that contains the port for the delete options.
- * @return {Object} The DELETE options for the HTTP request.
- */
-function populateDeleteOptions(testDoubleDefinition)
-{
-	return {
-		hostname: mbHost,
-		port: mbPort,
-		path: '/imposters/' + testDoubleDefinition.port,
-		method: 'DELETE',
-		headers: {}
-	};
 }
 
 module.exports = {

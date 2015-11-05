@@ -17,7 +17,7 @@ describe('DELETE /testdoubles', function() {
 			json: {	
 				name: testDoubleName
 			}
-		}, function(error, response, body) {
+		}, function() {
 
 			request({
 				url: 'http://localhost:' + tdPort + '/testdoubles',
@@ -25,13 +25,13 @@ describe('DELETE /testdoubles', function() {
 				json: {	
 					name: testDoubleName + "1"
 				}
-			}, function(error, response, body) {
+			}, function() {
 
 				request({
 					url: 'http://localhost:' + tdPort + '/testdoubles',
 					method: 'DELETE',
 					json: {}
-				}, function(error, response, body) {
+				}, function() {
 
 					var testDoubles = utils.getAllTestDoubles();
 					assert.deepEqual(testDoubles.imposters, [], 'no testdoubles should exist');

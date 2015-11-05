@@ -23,7 +23,7 @@ function runScalabilityTests(incrementor, done)
 		json: {	
 			name: testDoubleName
 		}
-	}, function(error, response, body) {
+	}, function() {
 
 		request({
 			url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName + '/proxy',
@@ -46,7 +46,7 @@ function runScalabilityTests(incrementor, done)
 					url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName + '/proxy',
 					method: 'DELETE',
 					json: {}					
-				}, function(error, response, body) {
+				}, function() {
 
 					request({
 						url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName,
@@ -81,12 +81,24 @@ describe('Scalability test', function() {
 	//wait until the entire operation is finished
 	this.timeout(0);
 
+	after(function(done) {
+
+		try 
+		{
+			fs.unlinkSync(__dirname + '/../test.json');
+		}
+
+		catch(error){}
+		
+		done();
+	});
+
 	afterEach(function(done) {
 
 		request({
 				url: 'http://localhost:' + tdPort + '/testdoubles/' + testDoubleName,
 				method: 'DELETE'
-			}, function(error, response, body) {
+			}, function() {
 				done();
 		});
 	});
