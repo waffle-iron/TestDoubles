@@ -26,12 +26,13 @@ Once the request is handled, a reply response is sent back to the client from th
 
 ## Environment Variables
 
-TestDoubles uses four environment variables:
+TestDoubles uses five environment variables:
 
 1. TD_PORT: the port on which TestDoubles will run, defaults to 5050.
 2. MB_HOST: the hostname on which Mountebank resides, defaults to localhost
 3. MB_PORT: the port on which Mountebank reides, defaults to 2525.
 4. NODE_ENV: the environment in which TestDoubles will run, defaults to development.
+5. TD_HOST: the full url for the TD instance, set by the docker file when the application is deployed.
 
 ## Logger and Utils
 
