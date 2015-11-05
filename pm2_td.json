@@ -1,0 +1,16 @@
+{
+	"name": "tdctl",
+	"script": "bin/tdctl",
+	"args": "start-server",
+	"error_file": "./logs/td.log",
+	"out_file": "./logs/td.log",
+	"cwd": "/Users/MEVDH01/Desktop/code/testdoubles",
+	"instances": 3,
+	"env": {
+		"NODE_ENV": "development",
+		"TD_HOST": "http://localhost:5050",
+		"TD_PORT": 5050,
+		"MB_HOST": "localhost",
+		"MB_PORT": 2525
+	}
+}

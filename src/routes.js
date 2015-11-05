@@ -52,6 +52,9 @@ module.exports = function() {
 						'TestDoubles ' + packageFile.version + ' running at ' + server.info.uri  + 
 						'\n' + 
 						'\n' +
+						'Running with process id: ' + process.pid + 
+						'\n' + 
+						'\n' +
 						'TestDoubles is a "Test Double" framework that mimics a service by acting as an intermediate agent between a client and the actual service. It can also act as a proxy and record the interactions between the client and the service. Once these interactions are recorded, they can be replayed to mimic the behavior of the actual service. Each service that is made by the tester or client is considered to be a testdouble. TestDoubles is intended to treat the middleware integration platforms such as MuleSoft, Oracle, Boomi, Informatica, JitterBit, snapLogic and others as the "System Under Test", bringing the concept of Continuous Testing to the EAI world.' + 
 						'\n' + 
 						'\n' + 
