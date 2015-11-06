@@ -59,13 +59,15 @@ npm-test: npm-lint
 npm-scalability-test:
 	npm run scalability-test
 
+#requires the following environment variables to be set: NPM_USERNAME, NPM_PASSWORD, NPM_EMAIL
 npm-release: 
-	@echo "++++++++++++++++ NPM BUILD: Done! +++++++++++++++++++++++++++++ "
-
+	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
+	./bin/npm_login.sh
+	npm publish
 
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
-	#printout if docker installed. If not please install docker before running docker-build
+#printout if docker installed. If not please install docker before running docker-build
 docker-validate:
 	@echo "*********** Docker Setup ************"
 	@echo "Docker: $$(docker --version | awk '{print $$3}') installed"	
