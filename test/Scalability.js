@@ -35,8 +35,10 @@ function runScalabilityTests(incrementor, done)
 
 			mbPort = body.port;
 
+			//the first parameter in the function below is error,
+			//the second is stdout, and the third is stderr
 			//to print the contents of the exec statement, write console.log(stdout) after the if
-			exec('./bin/test_scalability.sh ' + mbPort + ' ' + incrementor, function(error, stdout, stderr) {
+			exec('./bin/test_scalability.sh ' + mbPort + ' ' + incrementor, function() {
 				
 				if(error !== null) {
 					console.log("error is: " + error);
