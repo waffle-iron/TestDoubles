@@ -62,7 +62,6 @@ npm-scalability-test:
 #requires the following environment variables to be set: NPM_USERNAME, NPM_PASSWORD, NPM_EMAIL
 npm-release: 
 	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
-	./bin/npm_login.sh
 	npm publish
 
 	
