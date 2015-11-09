@@ -1,3 +1,5 @@
+# Maintainer: Rajesh Raheja
+# November 9, 2015
 
 ifeq ($(shell uname), Linux)
 DOCKER=sudo docker
@@ -43,6 +45,7 @@ npm-clean: npm-validate
 	rm -f logs/*.log
 	rm -f testdoubles/*.json
 	rm -rf node_modules/*
+	rm -rf site/*
 
 npm-build: npm-clean doc 
 	@echo "++++++++++++++++ Running npm-build +++++++++++++++++" 
@@ -55,9 +58,6 @@ npm-lint: npm-build
 npm-test: npm-lint
 	@echo "++++++++++++++++ Running npm-test ++++++++++++++++++++++++++ "
 	npm test
-
-npm-scalability-test:
-	npm run scalability-test
 
 #requires the following environment variables to be set: NPM_USERNAME, NPM_PASSWORD, NPM_EMAIL
 npm-release: 
@@ -123,8 +123,6 @@ build: npm-build docker-build
 
 clean: npm-clean docker-clean
 
-
-
 #Utilities
 tag:
 	@echo "Git Version: " `git describe --long --first-parent`
@@ -141,7 +139,7 @@ docker-run-hostmode:
 	docker run -it --name testdoubles --net=host $(DOCKER_REPO)/testdoubles
 
 docker-run-port:
-	docker run -it -p 2525:2525 -p 5050:5050 -p 5051:5051 -p 5052:5052 -p 5053:5053 -p 5054:5054 -p 5055:5055 --name testdoubles $(DOCKER_REPO)/testdoubles
+	docker run -it -p 2525:2525 -p 5050:5050 -p 5051:5051 --name testdoubles $(DOCKER_REPO)/testdoubles
 
 docker-run-bash:
 	docker run -it $(DOCKER_REPO)/testdoubles bash

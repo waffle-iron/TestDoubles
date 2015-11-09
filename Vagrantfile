@@ -1,5 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+# Maintainer: Rajesh Raheja
+# November 2015
 
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
@@ -43,8 +45,6 @@ Vagrant.configure(2) do |config|
     export TD_HOME=/opt/testdoubles
     export TD_HOST=http://localhost:5050
     export TD_PORT=5050
-    export TD_MIN_PORT=5051
-    export TD_MAX_PORT=5055
     export PATH=${TD_HOME}/bin:$PATH
     mkdir ${TD_HOME}
     cp -R /vagrant/* ${TD_HOME}
