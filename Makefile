@@ -59,11 +59,14 @@ npm-test: npm-lint
 	@echo "++++++++++++++++ Running npm-test ++++++++++++++++++++++++++ "
 	npm test
 
-#requires the following environment variables to be set: NPM_USERNAME, NPM_PASSWORD, NPM_EMAIL
+#requires the following environment variable to be set: NPM_TOKEN
+npm-login:
+ifeq ($(NPM_TOKEN), )
+	$(error NPM_TOKEN env variable is empty!)
+
 npm-release: 
 	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
 	npm publish
-
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build
@@ -115,7 +118,7 @@ endif
 	@$(DOCKER) login -e=$(DOCKER_EMAIL) -u=$(DOCKER_USERNAME) -p=$(DOCKER_PASSWORD)
 
 #Overall deployment module which will build npm-build, docker container build, push to docker hub
-release: npm-validate docker-validate docker-login npm-test npm-release docker-test docker-release
+release: npm-validate npm-login docker-validate docker-login npm-test npm-release docker-test docker-release
 
 test: npm-test docker-test
 
