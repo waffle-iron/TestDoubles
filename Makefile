@@ -65,7 +65,7 @@ ifeq ($(NPM_TOKEN), )
 	$(error NPM_TOKEN env variable is empty!)
 endif
 
-npm-release: 
+npm-release: npm-login
 	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
 	npm publish
 	
