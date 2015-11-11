@@ -63,6 +63,7 @@ npm-test: npm-lint
 npm-login:
 ifeq ($(NPM_TOKEN), )
 	$(error NPM_TOKEN env variable is empty!)
+endif
 
 npm-release: 
 	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
