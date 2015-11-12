@@ -76,7 +76,7 @@ A JSON example for a testdouble's definition file is given below.
 
 The above example describes a testdouble that contains a proxy to the Google Maps API. 
 
-# 12 Factor Application
+## 12 Factor Application
 
 A well-designed and programmed application generally follows the 12 factors standard for the SaaS model.
 The TestDoubles software is evaluated for each of the 12 factors below.
@@ -126,7 +126,7 @@ The TestDoubles software is evaluated for each of the 12 factors below.
 
     - Admin code should be the same as production code, and must ship with it. Dependency isolation and other factors also apply. TestDoubles is compliant with this factor.
     
-# Scalability 
+## Scalability 
 
 There are two options for scalability. The first is to embed Montebank (AKA MB) inside of TD, and the second is to separate MB from TD.
 Irrespective of the option, there is always a TD registry file that maintains a lookup of the testdoubles that exist on each node. The registry file is maintained by Consul. Each instance of TD runs inside a docker container. A node can have many docker containers, and each node must also have a docker container for Registrator. Registrator is a third party service that automatically registers and deregisters a service with Consul. Consul should be on its own node, and not in a docker container. 
