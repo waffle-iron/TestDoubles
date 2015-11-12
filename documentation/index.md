@@ -45,14 +45,37 @@ To check the hostname and port in which TestDoubles is running
   
 * If you are on Darwin(Mac), Run '$ docker-machine ip default' and note down the IP-Address which is the hostname for Mac
 
-Start the testdoubles container using the following command and note down the port number it is returning. 
+The TestDoubles container can be started either in the background and foreground.
+
+To start in the foreground use the following command:
 ```
 $ docker run -i -t --name testdoubles --net=host devopshub/testdoubles
 ```
 
-To start the testdoubles in background and view the logs to notedown the hostname and port number
+To start the testdoubles in background use the following command:
 ```
 $ docker run -d --name testdoubles --net=host devopshub/testdoubles
+```
+
+Once the container has been started, execute the command below if you wish to enter inside the container.
+By entering inside the container, you can executed td commands directly.
+```
+Example
+
+docker exec -it testdoubles bash
+bin/td create --td-name "testDouble"
+```
+
+td commands can also be run outside of the container
+```
+Example
+
+docker exec -it testdoubles bin/td create --td-name "testDouble"
+```
+
+To view logs run the following command
+
+```
 $ docker logs -f testdoubles
 ```
 
