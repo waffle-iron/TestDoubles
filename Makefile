@@ -67,7 +67,9 @@ endif
 
 npm-release: npm-login
 	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
+	echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 	npm publish
+	rm .npmrc
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build
@@ -105,7 +107,7 @@ else
 	$(DOCKER) push $(DOCKER_REPO)/testdoubles
 endif
 
-#Use it to login to docker hub account. Takes 3 parameters DOCKER_EMIAL, DOCKER_PASSWORD, DOCKER_USERNSME
+#Use it to login to docker hub account. Takes 3 parameters DOCKER_EMAIL, DOCKER_PASSWORD, DOCKER_USERNAME
 docker-login: 
 ifeq ($(DOCKER_EMAIL), )
 	$(warning DOCKER_EMAIL env variable is empty!)
