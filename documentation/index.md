@@ -86,7 +86,7 @@ Example
 curl -s http://localhost:5050/install.sh | TD_HOST="http://localhost:5050" sh
 ```
 
-## TestDouble life cycle 
+## TestDouble Life Cycle 
 Using test doubles is done as follows by the tester of the System Under Test (SUT):
 
 1. Create the test double
