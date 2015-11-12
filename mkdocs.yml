@@ -2,9 +2,9 @@ site_name: TestDoubles
 docs_dir: ./documentation
 site_dir: ./site
 pages:
-- Home: index.md
-- CLI: CLI.md
-- API: API.md
-- Implementation: implementation_details.md
+- Getting Started: index.md
 - Cluster Mode: cluster_mode.md
+- CLI Reference: CLI.md
+- API Documentation: API.md
+- Implementation Details: implementation_details.md
 theme: mkdocs

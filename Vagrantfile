@@ -32,9 +32,9 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--vram", 16]
   end
 
-  config.push.define "atlas" do |push|
-    push.app = "rraheja/vagrant-testdoubles"
-  end
+  # config.push.define "atlas" do |push|
+  #   push.app = "rraheja/vagrant-testdoubles"
+  # end
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
@@ -46,6 +46,13 @@ Vagrant.configure(2) do |config|
     export TD_HOST=http://localhost:5050
     export TD_PORT=5050
     export PATH=${TD_HOME}/bin:$PATH
+
+    echo "export TD_USER=td" > /home/vagrant/.bash_aliases
+    echo "export TD_HOME=/opt/testdoubles" >> /home/vagrant/.bash_aliases
+    echo "export TD_HOST=http://localhost:5050"  >> /home/vagrant/.bash_aliases
+    echo "export TD_PORT=5050"  >> /home/vagrant/.bash_aliases
+    echo "export PATH=${TD_HOME}/bin:$PATH"  >> /home/vagrant/.bash_aliases
+    
     mkdir ${TD_HOME}
     cp -R /vagrant/* ${TD_HOME}
     sudo groupadd -r ${TD_USER}
