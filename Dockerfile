@@ -1,4 +1,4 @@
-FROM node:0.12.7-slim
+FROM node:0.10.40-slim
 MAINTAINER Rajesh Raheja "rajesh.raheja@ca.com"
 LABEL Description="Docker container for the TestDoubles app. Includes CLI, REST APIs, Engine, NodeJS and Mountebank."
 
