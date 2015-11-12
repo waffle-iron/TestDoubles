@@ -8,7 +8,9 @@ TestDoubles is a "Test Double" framework that mimics a service by acting as an i
 
 ## Getting Started ##
 
-TestDoubles is available for both single server and cluster mode. For more information on how to install TestDoubles for cluster mode, click on the link below.
+TestDoubles is available for both single server and cluster mode. For single server mode, there are three installation options: npm, docker, and vagrant each of which is described in futher detail below. Each installation option is independent of the others, and it is not necessary proceed through the installation process in sequence. 
+
+For more information on how to install TestDoubles for cluster mode, click on the link below.
 
 [Cluster Mode Installation](cluster_mode.md)
 
