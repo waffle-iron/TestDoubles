@@ -41,11 +41,16 @@ Download TestDoubles from Dockerhub and run the container. It is preferable to r
 ```
 $ docker pull devopshub/testdoubles
 ```
-To check the hostname and port in which TestDoubles is running
+To check the hostname on which TestDoubles is running
 
 * If you are on Linux, the hostname is "localhost"
   
-* If you are on Darwin(Mac), Run '$ docker-machine ip default' and note down the IP-Address which is the hostname for Mac
+* If you are on Darwin(Mac), run the command below and note down the IP address, which is the hostname for Mac
+```
+$ docker-machine ip default
+```
+
+The port will be defaulted to 5050, remember to substitute that in the curl command in the usage section below.
 
 The TestDoubles container can be started either in the background and foreground.
 
