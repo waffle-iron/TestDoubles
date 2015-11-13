@@ -1,6 +1,6 @@
 {
   "name": "testdoubles",
-  "version": "0.9.15",
+  "version": "0.9.16",
   "dependencies": {
     "chai": {
       "version": "3.2.0",
