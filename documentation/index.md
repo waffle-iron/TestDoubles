@@ -59,27 +59,13 @@ To start the testdoubles in background use the following command:
 $ docker run -d --name testdoubles --net=host devopshub/testdoubles
 ```
 
-Once the container has been started, execute the command below if you wish to enter inside the container.
-By entering inside the container, you can executed td commands directly.
-```
-Example
-
-docker exec -it testdoubles bash
-bin/td create --td-name "testDouble"
-```
-
-td commands can also be run outside of the container
-```
-Example
-
-docker exec -it testdoubles bin/td create --td-name "testDouble"
-```
-
 To view logs run the following command
 
 ```
 $ docker logs -f testdoubles
 ```
+
+After running TestDoubles as a Docker container, proceed to the usage section below for more information on how to run TestDoubles.
 
 ### Vagrant Installation
 
