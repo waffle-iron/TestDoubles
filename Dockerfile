@@ -1,6 +1,6 @@
 FROM node:0.10.40-slim
 MAINTAINER Rajesh Raheja "rajesh.raheja@ca.com"
-LABEL Description="Docker container for the TestDoubles app. Includes CLI, REST APIs, Engine, NodeJS and Mountebank."
+LABEL Description="Docker container for the TestDoubles app. Includes CLI, REST APIs, TD, NodeJS and Mountebank."
 
 # Setup TestDoubles environment
 ENV TD_USER td

@@ -6,10 +6,11 @@ echo "Downloading TD file from" $TD_HOST
 curl -O -s $TD_HOST/bin/td 
 sudo chmod +x td
 echo "set TD Path"
-sudo ln -sf ./td /usr/local/bin/td
+sudo ln -sf td /usr/local/bin/td
 #export PATH=$PATH:.
-sed -ie "1s@TD_HOST=.*@TD_HOST=\"${TD_HOST}\"@" td
-rm tde
+# sed -ie "1s@TD_HOST=.*@TD_HOST=\"${TD_HOST}\"@" td
+sed -i inplace "s/TD_HOST=.*/TD_HOST=\"${TD_HOST}\"/" td
+# rm tde
 
 
 
