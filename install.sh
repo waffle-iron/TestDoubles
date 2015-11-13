@@ -8,8 +8,9 @@ sudo chmod +x td
 echo "set TD Path"
 sudo ln -sf td /usr/local/bin/td
 #export PATH=$PATH:.
-# sed -ie "1s@TD_HOST=.*@TD_HOST=\"${TD_HOST}\"@" td
-sed -i inplace "s/TD_HOST=.*/TD_HOST=\"${TD_HOST}\"/" td
+sed -ie "s@TD_HOST=.*@TD_HOST=\"${TD_HOST}\"@" td
+#sed -i inplace "s/TD_HOST=.*/TD_HOST=\"${TD_HOST}\"/" td
+#sed -ie "s/TD_HOST=.*/TD_HOST=\"${TD_HOST}\"/" td
 # rm tde
 
 
