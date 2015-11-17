@@ -42,13 +42,15 @@ Vagrant.configure(2) do |config|
     sudo rm -rf /var/lib/apt/lists/*
     ln -s /usr/bin/nodejs /usr/bin/node
     export TD_USER=td
-    export TD_HOME=/opt/testdoubles
+    export TD_ROOT=/opt/testdoubles
+    export TD_HOME=${TD_ROOT}/node_modules/testdoubles
     export TD_HOST=http://localhost:5050
     export TD_PORT=5050
     export PATH=${TD_HOME}/bin:$PATH
 
     echo "export TD_USER=td" > /home/vagrant/.bash_aliases
-    echo "export TD_HOME=/opt/testdoubles" >> /home/vagrant/.bash_aliases
+    echo "export TD_ROOT=/opt/testdoubles" >> /home/vagrant/.bash_aliases
+    echo "export TD_HOME=${TD_ROOT}/node_modules/testdoubles" >> /home/vagrant/.bash_aliases
     echo "export TD_HOST=http://localhost:5050"  >> /home/vagrant/.bash_aliases
     echo "export TD_PORT=5050"  >> /home/vagrant/.bash_aliases
     echo "export PATH=${TD_HOME}/bin:$PATH"  >> /home/vagrant/.bash_aliases
@@ -58,12 +60,13 @@ Vagrant.configure(2) do |config|
     # cp -R /vagrant/* ${TD_HOME}
     sudo groupadd -r ${TD_USER}
     sudo useradd -r -m -g ${TD_USER} ${TD_USER}
-    sudo chown -R ${TD_USER} ${TD_HOME}
-    chgrp -R ${TD_USER} ${TD_HOME}
+    sudo chown -R ${TD_USER} ${TD_ROOT}
+    sudo chgrp -R ${TD_USER} ${TD_ROOT}
     chmod 777 ${TD_HOME}/testdoubles
     chmod 777 ${TD_HOME}/logs
+    cd ${TD_ROOT}
+    npm install testdoubles --production
     cd ${TD_HOME}
-    npm install testdoubles --production && npm prune --production
     tdctl start
   SHELL
 end
