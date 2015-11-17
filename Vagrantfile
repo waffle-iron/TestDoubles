@@ -32,9 +32,9 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--vram", 16]
   end
 
-  # config.push.define "atlas" do |push|
-  #   push.app = "rraheja/vagrant-testdoubles"
-  # end
+  config.push.define "atlas" do |push|
+    push.app = "devopshub/testdoubles"
+  end
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
@@ -53,8 +53,9 @@ Vagrant.configure(2) do |config|
     echo "export TD_PORT=5050"  >> /home/vagrant/.bash_aliases
     echo "export PATH=${TD_HOME}/bin:$PATH"  >> /home/vagrant/.bash_aliases
     
-    mkdir ${TD_HOME}
-    cp -R /vagrant/* ${TD_HOME}
+    mkdir -p ${TD_HOME}/testdoubles
+    mkdir -p ${TD_HOME}/logs
+    # cp -R /vagrant/* ${TD_HOME}
     sudo groupadd -r ${TD_USER}
     sudo useradd -r -m -g ${TD_USER} ${TD_USER}
     sudo chown -R ${TD_USER} ${TD_HOME}
@@ -62,7 +63,7 @@ Vagrant.configure(2) do |config|
     chmod 777 ${TD_HOME}/testdoubles
     chmod 777 ${TD_HOME}/logs
     cd ${TD_HOME}
-    npm install --production && npm prune --production
+    npm install testdoubles --production && npm prune --production
     tdctl start
   SHELL
 end

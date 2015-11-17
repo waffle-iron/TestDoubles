@@ -10,21 +10,22 @@ ENV TD_HOST http://localhost:5050
 ENV TD_PORT 5050
 ENV NODE_ENV production
 
-# Install TestDoubles from source -- this requires the Dockerfile at the root of the project folder
-COPY . ${TD_HOME}
+# Install and configure system
 RUN apt-get update && \
     apt-get install -y curl && \
     rm -rf /var/lib/apt/lists/* && \
     groupadd -r ${TD_USER} && \
     useradd -r -m -g ${TD_USER} ${TD_USER} && \
+    mkdir -p ${TD_HOME}/testdoubles && \
+    mkdir -p ${TD_HOME}/logs && \
     chown -R ${TD_USER} ${TD_HOME} && \
     chgrp -R ${TD_USER} ${TD_HOME} && \
     chmod 777 ${TD_HOME}/testdoubles && \
     chmod 777 ${TD_HOME}/logs
 
-# Start the processes
+# Install TestDoubles from the npm registry and start the processes
 EXPOSE 2525 5050 5051
 USER ${TD_USER}
 WORKDIR ${TD_HOME}
-RUN npm install --production && npm prune --production
+RUN npm install testdoubles --production && npm prune --production
 CMD ["tdctl", "start"]
