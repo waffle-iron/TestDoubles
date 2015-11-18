@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y nodejs wget curl
+    sudo apt-get install -y nodejs npm wget curl
     sudo rm -rf /var/lib/apt/lists/*
     ln -s /usr/bin/nodejs /usr/bin/node
     export TD_USER=td
@@ -54,7 +54,8 @@ Vagrant.configure(2) do |config|
     echo "export TD_HOST=http://localhost:5050"  >> /home/vagrant/.bash_aliases
     echo "export TD_PORT=5050"  >> /home/vagrant/.bash_aliases
     echo "export PATH=${TD_HOME}/bin:$PATH"  >> /home/vagrant/.bash_aliases
-    
+   
+    rm -rf ${TD_ROOT} 
     mkdir -p ${TD_HOME}/testdoubles
     mkdir -p ${TD_HOME}/logs
     # cp -R /vagrant/* ${TD_HOME}
