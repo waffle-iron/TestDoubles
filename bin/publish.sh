@@ -1,14 +1,14 @@
 #!/bin/bash
 
-commit=`git log -1 --format=%B`
-echo  "Commit is:" $commit
+tag=`git describe --exact-match HEAD`
+echo  "Tag is:" $tag
 
-if [[ $commit =~ ^[0-9]*\.[0-9]*\.[0-9]*$ ]]; then
+if [[ $tag == "" ]]; then
+	echo "No tag is present for HEAD, therefore not publishing to npm"
 	echo
+else
 	echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
 	echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 	npm publish
 	rm .npmrc
-else
-	echo "Not a semantic version commit, therefore not releasing to npm"
 fi
