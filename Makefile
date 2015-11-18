@@ -66,10 +66,7 @@ ifeq ($(NPM_TOKEN), )
 endif
 
 npm-release: npm-login
-	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
-	echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-	npm publish
-	rm .npmrc
+	./bin/publish.sh
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build
