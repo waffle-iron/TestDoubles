@@ -91,12 +91,13 @@ function help()
  	console.log();
 	console.log();
  	console.log('Usage: tdctl [command] [options]');
-    console.log('Commands: start, stop, help (defaults to start)');
+    console.log('Commands: start, start-server, stop, help (defaults to start)');
     console.log('Options:');
     console.log('    --version         displays the TestDoubles version and exits');
     console.log();
     console.log('Description of commands ');
-    console.log('    [start] Starts the TestDoubles server. If the command is omitted, server will be started automatically.');
+    console.log('    [start] Starts the TestDoubles server and Mountebank. If the command is omitted, server will be started automatically.');
+    console.log('    [start-server] Starts only the TestDouble server.'); 
     console.log('    [stop]  Stops the TestDoubles server.');
     console.log('    [help]  Displays the documentation for TestDoubles.');
     console.log();
