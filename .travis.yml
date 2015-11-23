@@ -12,6 +12,11 @@ branches:
   only:
     - master
 
+# environment variables for build
+env:
+  build:
+    - secure: smU0JKfAsxI1Z3kUqUhYcv/WeLs3X9NHcXc0c0zQ32RzO5li2hrGjCXviIGUZ1ENy6OoWAZDM3gXjwROEE3Z6l+aOxvjE3JVR8fpTcv6R65QcLYYEH1qN9FxucwCKYzgvtCYwHLT/njP7x2j80M9dPrJCteEJyyccgyzvy/v0rxJcVjxYN37y+izrZgVzeSJx9C3bcyXPTMPWfMqaeqaB6aDu6sVhTvRcNYqPiQF5Xp/jcrOivqTEFZ+iUXcuom5krvNkn/aaI1a2yVwU5D3P5iBDNgU51VmFZjX7ru3plcNdEly6uh7/vZ0rqHEiXc0sFlXI9XmDOuAZQI3PC7SrQ==
+
 # Keep all installation steps in Dockerfile and avoid here
 before_install:
     - make setup
