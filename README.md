@@ -1,7 +1,7 @@
 # TestDoubles - Light Weight Service Virtualization for iPaaS and Microservices #
 
-[![Semaphore Build Status](https://semaphoreci.com/api/v1/projects/d1ad526b-97bc-444f-bb36-e208b3e94006/534914/badge.svg)](https://semaphoreci.com/rraheja/testdoubles)
-[![Shippable Build Status](https://img.shields.io/shippable/55ca3b65edd7f2c0529fcfe3.svg)](https://app.shippable.com/projects/55ca3b65edd7f2c0529fcfe3)
+# [![Semaphore Build Status](https://semaphoreci.com/api/v1/projects/d1ad526b-97bc-444f-bb36-e208b3e94006/534914/badge.svg)](https://semaphoreci.com/rraheja/testdoubles)
+[![Shippable Build Status](https://api.shippable.com/projects/55ca32fb2658780b0054da53/badge/master)](https://app.shippable.com/projects/55ca32fb2658780b0054da53)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/b8005f8b29e446878229288e12710bc7)](https://www.codacy.com)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/DevTestSolutions/TestDoubles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Stack Share](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/ianakelly/testdoubles)
