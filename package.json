@@ -7,7 +7,7 @@
     "lint": "./node_modules/jshint/bin/jshint src/*",
     "scalability-test": "npm run start && sleep 5 && ./node_modules/mocha/bin/mocha test/Scalability.js && ./bin/tdctl stop",
     "start": "./bin/tdctl &",
-    "pretest": "npm run start && sleep 5",
+    "pretest": "npm run start && sleep 15",
     "test": "./node_modules/mocha/bin/mocha test/*",
     "posttest": "./bin/tdctl stop"
   },
