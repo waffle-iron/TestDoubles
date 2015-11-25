@@ -20,7 +20,7 @@ module.exports = function() {
 			path: "/site/{fileName*}",
 			handler: {
 				directory: {
-					path: './site',
+					path: __dirname + '/../site',
 					listing: false,
 					index: true
 				}
