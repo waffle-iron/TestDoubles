@@ -67,13 +67,13 @@ endif
 
 npm-release: npm-login
 	
-ifeq ($(shell git describe --exact-match HEAD), )
+ifeq ($(shell git describe --exact-match HEAD 2>/dev/null), )
 	@echo "No tag is present for head, therefore not publishing to npm"
 else
-	echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
-	echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
+	@echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
 	npm publish
-	rm .npmrc
+	rm ~/.npmrc
 endif
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
