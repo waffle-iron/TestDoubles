@@ -61,20 +61,21 @@ npm-test: npm-lint
 
 #requires the following environment variable to be set: NPM_TOKEN
 npm-login:
-ifeq ($(NPM_TOKEN), )
-	$(error NPM_TOKEN env variable is empty!)
+ifndef NPM_TOKEN
+	$(error NPM_TOKEN environment variable is not set! Please set it in the build environment.)
 endif
 
+	@echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+	chmod 600 .npmrc
+	@echo "NPM authenticated user is: " `npm whoami`
+
 npm-release: npm-login
-	
-ifeq ($(shell git describe --exact-match HEAD 2>/dev/null), )
-	@echo "No tag is present for head, therefore not publishing to npm"
-else
-	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
-	@echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-	npm publish
-	rm ~/.npmrc
-endif
+	ifeq ($(shell git describe --exact-match HEAD 2>/dev/null), )
+		@echo "No tag is present for head, therefore not publishing to npm."
+	else
+		@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
+		npm publish
+	endif
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build
@@ -138,13 +139,6 @@ clean: npm-clean docker-clean
 tag:
 	@echo "Git Version: " `git describe --long --first-parent`
 	@echo "Number of commits: " `git log --oneline | wc -l`
-
-master-release: 
-	npm version $(version)
-	make release
-	git push origin master
-	var=$(git remote -v | grep bitbucket |awk '{print $1}' | head -1)
-	git push $var master
 
 docker-run-hostmode:
 	docker run -it --name testdoubles --net=host $(DOCKER_REPO)/testdoubles

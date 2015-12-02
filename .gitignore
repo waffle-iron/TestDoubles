@@ -10,3 +10,4 @@ testdoubles/*.json
 documentation/*.html
 coverage
 site/*
+.npmrc
