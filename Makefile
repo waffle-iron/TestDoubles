@@ -65,8 +65,8 @@ ifndef NPM_TOKEN
 	$(error NPM_TOKEN environment variable is not set! Please set it in the build environment.)
 endif
 
-	@echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-	chmod 600 .npmrc
+	@echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+	chmod 600 ~/.npmrc
 	@echo "NPM authenticated user is: " `npm whoami`
 
 npm-release: npm-login
