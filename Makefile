@@ -71,12 +71,12 @@ endif
 	@echo "NPM authenticated user is: " `npm whoami`
 
 npm-release: npm-login
-	ifeq ($(shell git describe --exact-match HEAD 2>/dev/null), )
-		@echo "No tag is present for head, therefore not publishing to npm."
-	else
-		@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
-		npm publish
-	endif
+ifeq ($(shell git describe --exact-match HEAD), )
+	@echo "No tag is present for head, therefore not publishing to npm."
+else
+	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
+	npm publish
+endif
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build

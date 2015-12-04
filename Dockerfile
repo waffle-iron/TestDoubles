@@ -22,8 +22,7 @@ RUN apt-get update && \
     chown -R ${TD_USER} ${TD_ROOT} && \
     chgrp -R ${TD_USER} ${TD_ROOT} && \
     chmod 777 ${TD_HOME}/testdoubles && \
-    chmod 777 ${TD_HOME}/logs && \
-    sudo npm install -g npm 
+    chmod 777 ${TD_HOME}/logs 
 
 # Install TestDoubles from the npm registry and start the processes
 EXPOSE 2525 5050 5051
