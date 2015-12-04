@@ -11,3 +11,4 @@ documentation/*.html
 coverage
 site/*
 .npmrc
+.DS_Store
