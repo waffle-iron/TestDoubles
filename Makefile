@@ -21,6 +21,7 @@ ifeq ($(shell uname), Linux)
 	@echo "Requires sudo access !"
 	sudo apt-get update && sudo apt-get install -y nodejs npm && sudo ln -s /usr/bin/nodejs /usr/bin/node && \
 	sudo apt-get install -y python-pip && sudo pip install mkdocs
+	sudo npm install -g npm
 else ifeq ($(shell uname), Darwin)
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" && \
 	brew update && brew install node && brew install python && pip install mkdocs

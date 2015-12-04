@@ -40,7 +40,8 @@ Vagrant.configure(2) do |config|
     sudo apt-get update
     sudo apt-get install -y nodejs npm wget curl
     sudo rm -rf /var/lib/apt/lists/*
-    ln -s /usr/bin/nodejs /usr/bin/node
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+    sudo npm install -g npm
     export TD_USER=td
     export TD_ROOT=/opt/testdoubles
     export TD_HOME=${TD_ROOT}/node_modules/testdoubles
