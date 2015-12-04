@@ -21,6 +21,7 @@ ifeq ($(shell uname), Linux)
 	@echo "Requires sudo access !"
 	sudo apt-get update && sudo apt-get install -y nodejs npm && sudo ln -s /usr/bin/nodejs /usr/bin/node && \
 	sudo apt-get install -y python-pip && sudo pip install mkdocs
+	sudo npm install -g npm
 else ifeq ($(shell uname), Darwin)
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" && \
 	brew update && brew install node && brew install python && pip install mkdocs
@@ -70,12 +71,12 @@ endif
 	@echo "NPM authenticated user is: " `npm whoami`
 
 npm-release: npm-login
-	ifeq ($(shell git describe --exact-match HEAD 2>/dev/null), )
-		@echo "No tag is present for head, therefore not publishing to npm."
-	else
-		@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
-		npm publish
-	endif
+ifeq ($(shell git describe --exact-match HEAD), )
+	@echo "No tag is present for head, therefore not publishing to npm."
+else
+	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
+	npm publish
+endif
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build
