@@ -30,7 +30,8 @@ before_script:
 
 script:
     - make npm-test
-    - make npm-release
+    - if [ $PULL_REQUEST == true ]; then make npm-testrelease; 
+      else make npm-testreleasedev; fi
 
 #Shippable executes npm test automatically, output should be in jUnit (test) and Cobertura (coverage) formats
 # after_success:
