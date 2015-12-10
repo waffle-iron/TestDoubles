@@ -1,6 +1,6 @@
 {
   "name": "testdoubles",
-  "version": "0.9.22",
+  "version": "0.9.23",
   "description": "TestDoubles - Light Weight Service Virtualization for iPaaS and Microservices",
   "main": "./bin/tdctl",
   "scripts": {
