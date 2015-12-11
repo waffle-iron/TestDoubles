@@ -77,6 +77,17 @@ else
 	@echo "++++++++++++++++ Releasing to NPM +++++++++++++++++++++++++++++ "
 	npm publish
 endif
+
+npm-testrelease: npm-login
+	
+	@echo "++++++++++++++++ Releasing to NPM test+++++++++++++++++++++++++++++ "
+	npm publish --tag test
+
+npm-testreleasedev: npm-login
+
+	@echo "++++++++++++++++ Releasing to NPM testdev+++++++++++++++++++++++++++++ "
+	npm publish --tag testdev
+
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build
