@@ -78,16 +78,15 @@ else
 	npm publish
 endif
 
+# Use this only for publishing pull request builds as defined in .travis.yml file.
 npm-testrelease: npm-login
-	
-	@echo "++++++++++++++++ Releasing to NPM test+++++++++++++++++++++++++++++ "
+	@echo "++++++++++++++++ Releasing to NPM with tag test+++++++++++++++++++++++++++++ "
 	npm publish --tag test
 
-npm-testreleasedev: npm-login
-
-	@echo "++++++++++++++++ Releasing to NPM testdev+++++++++++++++++++++++++++++ "
-	npm publish --tag testdev
-
+# Use this only for testing npm publishing. Regular publishing should publish with the null/latest tag.
+npm-testprodrelease: npm-login
+	@echo "++++++++++++++++ Releasing to NPM with tag testdev+++++++++++++++++++++++++++++ "
+	npm publish --tag testprod
 	
 #Docker release module: Run docker release which will build docker container and push into whichever dockerhub  account you're logged into.
 #printout if docker installed. If not please install docker before running docker-build
