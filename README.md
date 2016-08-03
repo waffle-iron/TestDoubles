@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/DevTestSolutions/TestDoubles.png?label=ready&title=Ready)](https://waffle.io/DevTestSolutions/TestDoubles)
 # TestDoubles - Light Weight Service Virtualization for iPaaS and Microservices #
 
 [![Shippable Build Status](https://api.shippable.com/projects/564627481895ca447423774e/badge/master)](https://app.shippable.com/projects/564627481895ca447423774e)
